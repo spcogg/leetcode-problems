@@ -4,10 +4,14 @@
 #         self.val = x
 #         self.next = None
 
+# works, but is slow and memory intensive
+# speed: 18%
+# memory: 5.6%
 
 class Solution:
     def removeNthFromEnd(self, head: ListNode, n: int) -> ListNode:
-        # add in checker for null list
+        # if head == [] or head ==None:
+        #     return []
         current = head
         maxcount = 1  # first loop to get length
         while(current.next != None):
@@ -17,16 +21,11 @@ class Solution:
         count = 1
         if maxcount == n:
             return head.next
-        while(current.next != None):
-            if maxcount - count == n:
-                #print('current:', current.val)
+        for count in range(1, maxcount):
+            # print(count)
+            if maxcount - (count) == n:  # difference between count and max = n from end
                 current.next = current.next.next
-                # print('next:', current.next.val)
-                break
-                # do checks on where it is in the cont
-                # and update the pointers accordingly
-            current = current.next        
-            count += 1
-        return head
-                    
-                    
+                return head
+            current = current.next
+        
+        return None
