@@ -27,4 +27,5 @@ class Solution:
                 current.next = current.next.next
                 return head
             current = current.next
+        
         return None
